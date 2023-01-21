@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+
+#define ll long long
+
+using namespace std;
+
+
+bool isPrime(ll n)
+{
+	if (n < 2){
+		return false;
+	}
+	for (ll i = 2; i * i <= n; i++){
+		if (n % i == 0){
+			return false;
+		}
+	}
+	return true;
+}
+
+int mobius(ll N)
+{
+	if (N == 1){
+		return 1;
+	}
+	ll p = 0;
+	for (ll i = 1; i <= N; i++){
+		if (N % i == 0 && isPrime(i)) {
+			if (N % (i * i) == 0){
+				return 0;
+			}else{
+				p++;
+			}
+		}
+	}
+	return (p % 2 != 0)? -1 : 1;
+}
+
+int main()
+{
+	ll n,t,i=1;
+	cin>>t;
+	while(t--){
+		cout<<"Case #"<<i<<": ";
+		cin>>n;
+		cout<<"Mu("<<n<<") = "<<mobius(n)<<"\n";
+		i++;
+	}
+	return 0;
+}
